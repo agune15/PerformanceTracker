@@ -3,12 +3,14 @@ Class to track the performance of the CPU
 """
 
 import os.path
+import subprocess
 
 CPU_STATS_PATH = "/proc/stat"
 
 class CPUTracker:
     def __init__(self):
         self.last_working_time, self.last_idle_time = self.get_cpu_times()
+        self.process_top_log = ""
 
     def track_performance(self, threshold):
         if not (0 <= threshold <= 100):
@@ -39,3 +41,5 @@ class CPUTracker:
             idle_time = int(cpustats[4]) + int(cpustats[5])
             return working_time, idle_time
 
+    def get_processes_log_by_cpu_usage(self):
+        #self.process_top_log =
