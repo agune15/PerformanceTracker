@@ -20,8 +20,8 @@ class CPUTracker:
         cpu_usage = self.get_usage_percentage()
         if (cpu_usage > threshold):
             print(f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {threshold}")
-            print(PerformanceLogger.cpu_usage_top_processes)
-            # TODO: Fill a log
+            print(PerformanceLogger.cpu_usage_top_processes + "\n")
+            PerformanceLogger.store_cpu_log()
 
     def get_usage_percentage(self):
         curr_working_time, curr_idle_time = self.get_cpu_times()
