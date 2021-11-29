@@ -2,7 +2,6 @@
 TODO
 """
 
-import os.path
 import subprocess
 import sys
 from os import path, makedirs
@@ -29,29 +28,34 @@ class PerformanceLogger:
         cls.mem_usage_top_processes = '\n'.join(cls.mem_usage_top_processes.split('\n')[6:7+process_amount])
 
     @classmethod
-    def store_cpu_log(cls):
+    def store_cpu_log(cls, cpu_usage, perc_threshold):
         if not cls.any_logs_created:
-            cls.create_logs_dir()
+            cls.__create_logs_dir()
+
+        log = f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {round(perc_threshold,2)}%\n"
+        log += cls.cpu_usage_top_processes + "\n"
 
         with open(cls.cpu_logs_file, "a+") as f:
-            # TODO: Write CPU usage vs threshold
-            f.write("usage of the CPU\n")
-            f.write(cls.cpu_usage_top_processes + "\n\n")
+            f.write(log + "\n")
+        return log
 
     @classmethod
-    def store_mem_log(cls):
+    def store_mem_log(cls, used_mem_MB, MB_threshold, total_mem_MB):
         if not cls.any_logs_created:
-            cls.create_logs_dir()
+            cls.__create_logs_dir()
+
+        log = f"Memory usage exceeds threshold: {round(used_mem_MB,2)} MB > {round(MB_threshold,2)} MB. " \
+              f"Total: {round(total_mem_MB,2)} MB\n"
+        log += cls.mem_usage_top_processes + "\n"
 
         with open(cls.mem_logs_file, "a+") as f:
-            # TODO: Write MEM usage vs threshold
-            f.write("usage of the MEM\n")
-            f.write(cls.mem_usage_top_processes + "\n\n")
+            f.write(log + "\n")
+        return log
 
     @classmethod
-    def create_logs_dir(cls):
-        cls.logs_path = path.abspath(sys.modules["__main__"].__file__)
-        cls.logs_path = cls.logs_path.replace("PerformanceTracker.py", '')
+    def __create_logs_dir(cls):
+        if not cls.logs_path:
+            cls.__set_logs_default_root_dir()
         logs_folder_name = datetime.now().strftime("%Y%m%d_%H%M")
         cls.logs_path = path.join(cls.logs_path, logs_folder_name)
 
@@ -61,3 +65,16 @@ class PerformanceLogger:
         cls.cpu_logs_file = cls.logs_path + "/CPU"
         cls.mem_logs_file = cls.logs_path + "/MEM"
         cls.any_logs_created = True
+
+    @classmethod
+    def set_logs_root_dir(cls, logs_dir):
+        if not path.exists(logs_dir):
+            raise AssertionError(f"Directory {logs_dir} does not exist")
+
+        cls.logs_path = logs_dir
+
+    @classmethod
+    def __set_logs_default_root_dir(cls):
+        logs_path = path.abspath(sys.modules["__main__"].__file__)
+        logs_path = logs_path.replace("PerformanceTracker.py", '')
+        cls.set_logs_root_dir(logs_path)
