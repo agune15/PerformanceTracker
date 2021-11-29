@@ -30,7 +30,8 @@ class PerformanceLogger:
         if not cls.any_logs_created:
             cls.__create_logs_dir()
 
-        log = f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {round(perc_threshold,2)}%\n"
+        log = cls.__get_log_date() + " - "
+        log += f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {round(perc_threshold,2)}%\n"
         log += cls.cpu_usage_top_processes + "\n"
 
         with open(cls.cpu_logs_file, "a+") as f:
@@ -54,7 +55,8 @@ class PerformanceLogger:
         if not cls.any_logs_created:
             cls.__create_logs_dir()
 
-        log = f"Memory usage exceeds threshold: {round(used_mem_MB,2)} MB > {round(MB_threshold,2)} MB. " \
+        log = cls.__get_log_date() + " - "
+        log += f"Memory usage exceeds threshold: {round(used_mem_MB,2)} MB > {round(MB_threshold,2)} MB. " \
               f"Total: {round(total_mem_MB,2)} MB\n"
         log += cls.mem_usage_top_processes + "\n"
 
@@ -63,6 +65,10 @@ class PerformanceLogger:
         return log
 
     #endregion
+
+    @classmethod
+    def __get_log_date(cls):
+        return datetime.now().strftime("%d/%m/%Y %H:%M")
 
     @classmethod
     def __assert_process_amount(cls, process_amount):

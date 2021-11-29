@@ -30,3 +30,15 @@ optional arguments:
 ```
 
 ## Log directories and files structure
+
+- **Logs main directory**. A new subfolder is created each time the program is executed and stores the first log:
+![main_dir](./README_images/main_dir.png)
+
+- **Logs subfolders**. Each subfolder can contain up to two log files, one for the CPU logs, and the other one for the Memory logs. Log files are created when the first log is filled for any of the components:
+![main_dir](./README_images/logs_subfolder.png)
+
+- **Log files**. Log files store the CPU/Memory usage in comparison to the threshold and a list of processes:
+  - CPU logs store the processes that made the most use of the CPU at the time the log was added.
+  ![main_dir](./README_images/cpu_log.png)
+  - RAM logs store the processes that used the most memory at the time the log was added.
+  ![main_dir](./README_images/mem_log.png)
