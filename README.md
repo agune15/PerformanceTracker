@@ -28,3 +28,5 @@ optional arguments:
   -pa [processAmount], --pamount [processAmount]
                         Amount of processes to store in a log. Default is 5
 ```
+
+## Log directories and files structure
