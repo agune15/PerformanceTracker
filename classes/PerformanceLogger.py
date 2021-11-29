@@ -1,5 +1,5 @@
 """
-TODO
+Class to log the performance of the CPU & RAM
 """
 
 import subprocess
@@ -15,17 +15,13 @@ class PerformanceLogger:
     cpu_logs_file = ""
     mem_logs_file = ""
 
+    #region CPU logging
+
     @classmethod
     def store_cpu_top_processes(cls, process_amount):
         cls.cpu_usage_top_processes = subprocess.run(["top", "-b", "-o", "%CPU", "-n", "1"],
                                                      stdout=subprocess.PIPE).stdout.decode('ascii')
         cls.cpu_usage_top_processes = '\n'.join(cls.cpu_usage_top_processes.split('\n')[6:7+process_amount])
-
-    @classmethod
-    def store_mem_top_processes(cls, process_amount):
-        cls.mem_usage_top_processes = subprocess.run(["top", "-b", "-o", "%MEM", "-n", "1"],
-                                                     stdout=subprocess.PIPE).stdout.decode('ascii')
-        cls.mem_usage_top_processes = '\n'.join(cls.mem_usage_top_processes.split('\n')[6:7+process_amount])
 
     @classmethod
     def store_cpu_log(cls, cpu_usage, perc_threshold):
@@ -39,6 +35,16 @@ class PerformanceLogger:
             f.write(log + "\n")
         return log
 
+    #endregion
+
+    #region Memory logging
+
+    @classmethod
+    def store_mem_top_processes(cls, process_amount):
+        cls.mem_usage_top_processes = subprocess.run(["top", "-b", "-o", "%MEM", "-n", "1"],
+                                                     stdout=subprocess.PIPE).stdout.decode('ascii')
+        cls.mem_usage_top_processes = '\n'.join(cls.mem_usage_top_processes.split('\n')[6:7+process_amount])
+
     @classmethod
     def store_mem_log(cls, used_mem_MB, MB_threshold, total_mem_MB):
         if not cls.any_logs_created:
@@ -51,6 +57,8 @@ class PerformanceLogger:
         with open(cls.mem_logs_file, "a+") as f:
             f.write(log + "\n")
         return log
+
+    #endregion
 
     @classmethod
     def __create_logs_dir(cls):

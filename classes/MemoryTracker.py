@@ -1,5 +1,5 @@
 """
-TODO
+Class to track the performance of the RAM
 """
 
 from .PerformanceLogger import PerformanceLogger
