@@ -1,0 +1,40 @@
+usage of the MEM
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2255 alex      20   0 4823836 1,531g 310312 S   0,0 39,7  15:01.43 java
+ 1290 alex      20   0 1764064 445536  75472 S   5,0 11,0  31:23.59 compiz
+  809 root      20   0  391236 173004  30676 S   0,0  4,3   7:41.44 Xorg
+ 1513 alex      20   0 1317100 103808  26168 S   0,0  2,6   0:06.93 gnome-soft+
+ 1487 alex      20   0  864008  59920  22216 S   0,0  1,5   0:00.54 evolution-+
+
+usage of the MEM
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2255 alex      20   0 4823836 1,531g 310312 S   0,0 39,7  15:01.43 java
+ 1290 alex      20   0 1764064 445536  75472 S   0,0 11,0  31:23.67 compiz
+  809 root      20   0  391236 173004  30676 S   0,0  4,3   7:41.47 Xorg
+ 1513 alex      20   0 1317100 103808  26168 S   0,0  2,6   0:06.93 gnome-soft+
+ 1487 alex      20   0  864008  59920  22216 S   0,0  1,5   0:00.54 evolution-+
+
+usage of the MEM
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2255 alex      20   0 4823836 1,531g 310312 S   0,0 39,7  15:01.44 java
+ 1290 alex      20   0 1764064 445536  75472 S   0,0 11,0  31:23.76 compiz
+  809 root      20   0  391236 173004  30676 S   0,0  4,3   7:41.50 Xorg
+ 1513 alex      20   0 1317100 103808  26168 S   0,0  2,6   0:06.93 gnome-soft+
+ 1487 alex      20   0  864008  59920  22216 S   0,0  1,5   0:00.54 evolution-+
+
+usage of the MEM
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2255 alex      20   0 4823836 1,531g 310312 S  60,0 39,7  15:01.57 java
+ 1290 alex      20   0 1764064 445536  75472 S  20,0 11,0  31:23.96 compiz
+  809 root      20   0  391236 173004  30676 S   6,7  4,3   7:41.61 Xorg
+ 1513 alex      20   0 1317100 103808  26168 S   0,0  2,6   0:06.93 gnome-soft+
+ 1487 alex      20   0  864008  59920  22216 S   0,0  1,5   0:00.54 evolution-+
+
+usage of the MEM
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2255 alex      20   0 4823836 1,531g 310312 S   0,0 39,7  15:01.68 java
+ 1290 alex      20   0 1764064 445536  75472 S  26,7 11,0  31:24.23 compiz
+  809 root      20   0  391236 173004  30676 S   6,7  4,3   7:41.71 Xorg
+ 1513 alex      20   0 1317100 103808  26168 S   0,0  2,6   0:06.93 gnome-soft+
+ 1487 alex      20   0  864008  59920  22216 S   0,0  1,5   0:00.54 evolution-+
+

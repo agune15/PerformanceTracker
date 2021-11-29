@@ -1,3 +1,7 @@
+"""
+TODO
+"""
+
 import os.path
 import subprocess
 import sys
@@ -22,7 +26,7 @@ class PerformanceLogger:
     def store_mem_top_processes(cls, process_amount):
         cls.mem_usage_top_processes = subprocess.run(["top", "-b", "-o", "%MEM", "-n", "1"],
                                                      stdout=subprocess.PIPE).stdout.decode('ascii')
-        cls.mem_usage_top_processes = '\n'.join(cls.cpu_usage_top_processes.split('\n')[6:7+process_amount])
+        cls.mem_usage_top_processes = '\n'.join(cls.mem_usage_top_processes.split('\n')[6:7+process_amount])
 
     @classmethod
     def store_cpu_log(cls):
@@ -50,7 +54,10 @@ class PerformanceLogger:
         cls.logs_path = cls.logs_path.replace("PerformanceTracker.py", '')
         logs_folder_name = datetime.now().strftime("%Y%m%d_%H%M")
         cls.logs_path = path.join(cls.logs_path, logs_folder_name)
-        makedirs(cls.logs_path)
+
+        if not path.exists(cls.logs_path):
+            makedirs(cls.logs_path)
+
         cls.cpu_logs_file = cls.logs_path + "/CPU"
         cls.mem_logs_file = cls.logs_path + "/MEM"
         cls.any_logs_created = True

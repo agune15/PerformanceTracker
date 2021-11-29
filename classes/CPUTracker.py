@@ -2,8 +2,6 @@
 Class to track the performance of the CPU
 """
 
-import os.path
-import subprocess
 from .PerformanceLogger import PerformanceLogger
 
 CPU_STATS_PATH = "/proc/stat"
@@ -12,14 +10,15 @@ class CPUTracker:
     def __init__(self):
         self.last_working_time, self.last_idle_time = self.get_cpu_times()
 
-    def track_performance(self, threshold, process_amount):
-        if not (0 <= threshold <= 100):
-            raise AssertionError("CPU usage percentage has to be between 0 and 100")
+    def track_performance(self, perc_threshold, process_amount):
+        if not (0 <= perc_threshold <= 100):
+            raise AssertionError("CPU usage percentage threshold has to be between 0 and 100")
 
         PerformanceLogger.store_cpu_top_processes(process_amount)
         cpu_usage = self.get_usage_percentage()
-        if (cpu_usage > threshold):
-            print(f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {threshold}")
+
+        if cpu_usage > perc_threshold:
+            print(f"CPU usage exceeds threshold: {round(cpu_usage,2)}% > {perc_threshold}")
             print(PerformanceLogger.cpu_usage_top_processes + "\n")
             PerformanceLogger.store_cpu_log()
 
