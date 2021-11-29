@@ -29,7 +29,7 @@ def track_performance():
 
 def parse_arguments():
     parser = create_parser_args()
-    parse_parser_args(parser)
+    parse_argument_parser(parser)
 
 def create_parser_args():
     parser = argparse.ArgumentParser()
@@ -44,7 +44,7 @@ def create_parser_args():
                         help=f"Amount of processes to store in a log. Default is {round(process_amount)}")
     return parser
 
-def parse_parser_args(parser):
+def parse_argument_parser(parser):
     global cpu_perc_threshold, mem_MB_threshold, process_amount
 
     args = vars(parser.parse_args())
